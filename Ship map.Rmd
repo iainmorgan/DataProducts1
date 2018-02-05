@@ -1,0 +1,37 @@
+---
+title: "Leaflet and R markdown demo"
+author: "Iain Morgan"
+date: "1 feb 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Ship locations: 01/02/2018
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+library(leaflet)
+
+inpData <- read.csv("~/Leaflet/marine.csv") 
+inpData$popup <- as.character(inpData$popup)
+inpData <- inpData[,c(1:4)]
+
+shipIcon <- makeIcon(iconUrl = "~/Leaflet/ship.png", 
+                 iconWidth = 31, 
+                 iconHeight = 31, 
+                 iconAnchorX = 16, 
+                 iconAnchorY = 16)
+
+shipPopup <- as.list(inpData$popup)
+
+myMap <- inpData %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = shipIcon, popup = shipPopup, clusterOptions = markerClusterOptions) %>%
+  addTerminator() %>%
+  addMiniMap()
+myMap
+```
+
