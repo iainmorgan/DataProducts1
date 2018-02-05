@@ -14,11 +14,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 library(leaflet)
 
-inpData <- read.csv("~/Leaflet/marine.csv") 
+inpData <- read.csv("marine.csv") 
 inpData$popup <- as.character(inpData$popup)
 inpData <- inpData[,c(1:4)]
 
-shipIcon <- makeIcon(iconUrl = "~/Leaflet/ship.png", 
+shipIcon <- makeIcon(iconUrl = "ship.png", 
                  iconWidth = 31, 
                  iconHeight = 31, 
                  iconAnchorX = 16, 
